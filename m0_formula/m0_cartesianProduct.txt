@@ -1,0 +1,12 @@
+=LET(
+    o_array1, TOCOL(SORT(INSERTRANGEHERE, 1),
+    o_array2, TOCOL(INSERTRANGEHERE, 1),
+    p_rowQ1, ROWS(o_array1),
+    p_rowQ2, ROWS(o_array2),
+    p_len, p_rowQ1 * p_rowQ2,
+    p_idx1, 1 + QUOTIENT(SEQUENCE(p_len) - 1, p_rowQ2),
+    p_idx2, 1 + MOD(SEQUENCE(p_len) - 1, p_rowQ2),
+    o_col1, INDEX(o_array1, p_idx1),
+    o_col2, INDEX(o_array2, p_idx2),
+    HSTACK(o_col1, o_col2)
+)
