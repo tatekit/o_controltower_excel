@@ -1,6 +1,6 @@
 =LET(
-    o_array1, TOCOL(SORT(INSERTRANGEHERE, 1),
-    o_array2, TOCOL(INSERTRANGEHERE, 1),
+    o_array1, TOCOL(SORT({{RANGE}}, 1),
+    o_array2, TOCOL({{RANGE}}, 1),
     p_rowQ1, ROWS(o_array1),
     p_rowQ2, ROWS(o_array2),
     p_len, p_rowQ1 * p_rowQ2,
