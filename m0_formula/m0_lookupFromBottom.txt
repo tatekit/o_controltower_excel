@@ -2,12 +2,12 @@
   LET(
     o_array_lookup, {{RANGE}},
     o_array, {{RANGE}},
-    p_startRowN, {{INT}},
-    p_endRowN, {{INT}},
+    p_rowStart, {{INT}},
+    p_rowEnd, {{INT}},
     p_colN, {{INT}},
 
     XLOOKUP(TRUE,
-      INDEX(o_array_lookup, SEQUENCE(p_lastRowN - 1, , p_startRowN), p_colN) {{OPERATOR}} {{COND}} ,
+      INDEX(o_array_lookup, SEQUENCE(p_rowEnd - p_rowStart + 1, , p_rowStart), p_colN) {{OPERATOR}} {{COND}} ,
       o_array,
       "", 0, -1
     )
