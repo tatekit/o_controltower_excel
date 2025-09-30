@@ -1,0 +1,15 @@
+= LET(
+s_timeStart, {{TIME}},
+s_timeEnd, {{TIME}},
+o_range_time, {{RANGE}},
+o_range, {{RANGE}},
+p_loIdx,
+IFERROR(XMATCH(s_timeStart, o_range_time, 1, 2), ROWS(o_range_time)+1),
+p_hiIdx,
+IFERROR(XMATCH(s_timeEnd, o_range_time, -1, 2), 0),
+p_q, MAX(0, p_hiIdx - p_loIdx + 1),
+o_array, IF(p_q=0, "", TAKE(DROP(o_range, p_loIdx-1), p_q)),
+
+{{FUNCTION}}o_array
+
+)

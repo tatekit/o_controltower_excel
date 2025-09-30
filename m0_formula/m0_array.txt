@@ -1,0 +1,1 @@
+= INDEX({{RANGE}}, SEQUENCE(p_rowEnd - p_rowStart + 1,, p_rowStart))
