@@ -1,0 +1,37 @@
+Sub m2_exportSheetsToCsv()
+    Dim o_array_ws As Variant, o_ws_name As Variant
+    Dim ws As Worksheet, o_wb_new As Workbook
+    Dim o_dir As String, o_dir_fullpath As String
+
+    o_dir = "C:\"
+
+    o_array_ws = Array("sheet1", "sheet2", "sheet3")
+
+    Application.ScreenUpdating = False
+
+    For Each o_ws_name In o_array_ws
+        If m0_wsExists(o_ws_name, ThisWorkbook) Then
+            Set ws = ThisWorkbook.Sheets(o_ws_name)
+            ws.Copy
+            Set o_wb_new = ActiveWorkbook
+            o_dir_fullpath = o_dir & o_ws_name & ".csv"
+            Application.DisplayAlerts = False
+            o_wb_new.SaveAs Filename:=o_dir_fullpath, FileFormat:=xlCSV
+            o_wb_new.Close SaveChanges:=False
+        End If
+    Next o_ws_name
+
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+
+End Sub
+
+Function m0_wsExists(ByVal o_ws_name As String, Optional wb As Workbook) As Boolean
+    Dim ws As Worksheet
+    On Error Resume Next
+    If wb Is Nothing Then Set wb = ThisWorkbook
+    Set ws = wb.Sheets(o_ws_name)
+    m0_wsExists = Not ws Is Nothing
+    Set ws = Nothing
+    On Error GoTo 0
+End Function
